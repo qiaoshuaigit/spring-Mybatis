@@ -1,0 +1,207 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>mac.shuai.spring-Mybatis</groupId>
+  <artifactId>spring-Mybatis</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>spring-Mybatis Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+ <properties>
+		<org.springframework.version>3.2.0.RELEASE</org.springframework.version>
+	</properties>
+
+	<dependencies>
+
+		<!-- 1.spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${org.springframework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${org.springframework.version}</version>
+		</dependency>
+		<!-- 测试 -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-test</artifactId>
+    <version>${org.springframework.version}</version>
+</dependency>
+
+		<!-- 2.Tomcat servlet -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+		</dependency>
+		<!-- 标签库 -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<!-- 3.mybatis -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.1.1</version>
+		</dependency>
+		<!-- mybatis和spring整合包 -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+
+		<!-- 4.数据库连接 -->
+		<dependency>
+			<!-- 实现对象池化框架 -->
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<!-- 数据连接 -->
+		<dependency>
+			<groupId>net.sourceforge.jtds</groupId>
+			<artifactId>jtds</artifactId>
+			<version>1.2.4</version>
+		</dependency>
+		
+		<!-- SLF4J所提供的核心API是一些接口以及一个LoggerFactory的工厂类 -->
+		<!-- 提供log4j接口 -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.6.6</version>
+		</dependency>
+		<!-- 其 实slf4j原理很简单，他只提供一个核心slf4j api(就是slf4j-api.jar包)，这个包只有日志的接口，并没有实现，所以如果要使用就得再给它提供一个实现了些接口的日志包，比 如：log4j,common logging,jdk log日志实现包等，但是这些日志实现又不能通过接口直接调用，实现上他们根本就和slf4j-api不一致，因此slf4j又增加了一层来转换各日志实 现包的使用，当然slf4j-simple除外 -->
+		<!-- 就是 各日志实现包的连接层 -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.6.6</version>
+		</dependency>
+		 
+		<!-- 日志打印 很多jar包都依赖此包 -->
+		<!-- 日志实现包 -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.14</version>
+		</dependency>
+		
+		<!-- shiro -->
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-spring</artifactId>
+			<version>1.1.0</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-ehcache</artifactId>
+			<version>1.1.0</version>
+			<scope>compile</scope>
+		</dependency>		
+		<!-- 内部包 
+		<dependency>  
+			<groupId>com.roiland.web</groupId>
+			<artifactId>framework</artifactId>
+			<version>2.0</version>
+		</dependency> -->
+		<!-- HttpClient -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+			<version>4.2.2</version>
+		</dependency>
+		
+		<!-- <dependency>
+			<groupId>com.roiland.web.framework</groupId>
+			<artifactId>roilandwebframework</artifactId>
+			<version>0.4</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency> -->
+		
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.1</version>
+		</dependency>
+		<!-- 下面的三个包是在配置事务的时候用到的 spring的依赖包 -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>aopalliance</groupId>
+			<artifactId>aopalliance</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib-nodep</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+		<!-- 缓存 -->
+		<dependency>
+		    <groupId>com.googlecode.xmemcached</groupId>
+		    <artifactId>xmemcached</artifactId>
+		    <version>1.4.2</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.5</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/commons-betwixt/commons-betwixt -->
+		<dependency>
+			<groupId>commons-betwixt</groupId>
+			<artifactId>commons-betwixt</artifactId>
+			<version>1.0-beta-1.20020920.020057</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/commons-digester/commons-digester -->
+		<dependency>
+			<groupId>commons-digester</groupId>
+			<artifactId>commons-digester</artifactId>
+			<version>2.1</version>
+		</dependency>
+
+
+
+
+
+		<!-- 新浪微博 -->
+		<dependency>
+		    <groupId>com.belerweb</groupId>
+		    <artifactId>weibo4j-oauth2</artifactId>
+		    <version>2.1.1-beta2-3</version>
+		</dependency>
+
+	</dependencies>
+  <build>
+    <finalName>spring-Mybatis</finalName>
+	  <plugins>
+		  <plugin>
+			  <groupId>org.apache.maven.plugins</groupId>
+			  <artifactId>maven-compiler-plugin</artifactId>
+			  <configuration>
+				  <source>1.6</source>
+				  <target>1.6</target>
+			  </configuration>
+		  </plugin>
+	  </plugins>
+  </build>
+</project>

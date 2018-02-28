@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qs.web.fruit.dao.IAppleDao">
+
+<select id="getAppleById" parameterType="java.lang.Integer" resultType="com.qs.web.fruit.dto.AppleDto" >
+	select * from apple	 where id = #{id}
+</select>
+
+
+<insert id="insertAppleInfo" parameterType="com.qs.web.fruit.dto.AppleDto">
+	insert into apple(id,name,sale,rank,field,customerId,createDate)
+	values(#{id},#{name},#{sale},#{rank},#{field},#{customerId},#{createDate})
+</insert>
+
+
+</mapper>
+	

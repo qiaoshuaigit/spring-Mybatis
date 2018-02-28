@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qs.web.fruit.dao.IUserDao">
+
+<select id="getPasswordById" parameterType="java.lang.String" resultType="java.lang.String" >
+	select password from persion 
+	where loginName=#{loginName,jdbcType=VARCHAR}
+</select>
+
+<select id="getUserByLoginName" parameterType="java.lang.String" resultType="com.qs.web.fruit.dto.UserDto" >
+	select * from persion 
+	where loginName=#{loginName,jdbcType=VARCHAR}
+</select>
+
+<select id="getPrivilegeByUserId" parameterType="java.lang.Integer" resultType="com.qs.web.fruit.dto.PrivilegeDto" >
+	select p.privilege_id as privilegeId,p.privilege_name as privilegeName,p.privilege_description as privilegeDescription,p.parent_id as parentId
+	from privilege p,persion_privilege pp 
+	where p.privilege_id = pp.privilege_id and pp.userid=#{userId}
+</select>
+
+<insert id="insertUsers" parameterType="java.util.List">
+	<foreach collection="list" item="user" index="index">
+	insert into persion(loginName,userName,password,telephone)
+	values		
+	(#{user.loginName},#{user.userName},#{user.password},#{user.telephone})	
+	</foreach>
+
+</insert>
+
+</mapper>
+	

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: commons-betwixt:commons-betwixt:1.0-beta-1.20020920.020057">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/commons-betwixt/commons-betwixt/1.0-beta-1.20020920.020057/commons-betwixt-1.0-beta-1.20020920.020057.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/commons-betwixt/commons-betwixt/1.0-beta-1.20020920.020057/commons-betwixt-1.0-beta-1.20020920.020057-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/commons-betwixt/commons-betwixt/1.0-beta-1.20020920.020057/commons-betwixt-1.0-beta-1.20020920.020057-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

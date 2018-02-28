@@ -1,0 +1,95 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:jsp="http://java.sun.com/xml/ns/javaee/jsp"
+	xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+<!-- 项目描述 -->
+<display-name>super_springMybatis</display-name>
+<!-- 1.用作应用的ServletContext上下文初始化参数 -->
+<!-- 业务层和持久层容器 -->
+<context-param>
+	<param-name>contextConfigLocation</param-name>
+	<param-value>/WEB-INF/config/application*.xml</param-value>
+</context-param>
+<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>/WEB-INF/config/log4j.properties</param-value>
+</context-param>
+<!-- spring启动有3中方式 -->
+<!-- 1.ConterxtLoaderServlet 2.ContextLoaderListener 3.ContextLoaderPlugin -->
+<!-- ContextLoaderListener的作用就是启动Web容器时，自动装配ApplicationContext的配置信息。
+因为它实现了ServletContextListener这个接口，在web.xml配置这个监听器，启动容器时，就会默认执行它实现的方法 -->
+<!-- 在ContextLoaderListener中关联了ContextLoader这个类，所以整个加载配置过程由ContextLoader来完成 -->
+<!-- listener标签是用于监听的，ContextLoaderListener实现了ServletContextListener接口，
+可以监听所有的servlet，好想还有关于监听session的，request的等等的接口。-->
+<!-- 这样对于每个用户请求，都被contextLoaderlistener监听到，执行请求都要先经过这个类，
+这个类肯定是做些转移的操作，把由servlet容器管理的类转到spring容器去管理，首先肯定是产生spring容器，spring容器起作用了 -->
+<!-- form spring-web -->
+<listener>
+	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+</listener>
+
+<listener>
+	<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+</listener>
+<!-- 它主要负责处理由　JavaBeans Introspector的使用而引起的缓冲泄露 -->
+<!-- form spring-web -->
+<listener>
+	<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+</listener>
+<!-- 工作原理是，只要你在web.xml文件配置好要拦截的客户端请求，它都会帮你拦截到请求，此时你就可以对请求或响应(Request、Response)统一设置编码，简化操作 -->
+<filter>
+	<filter-name>encodingFilter</filter-name>
+	<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+	<init-param>
+		<param-name>encoding</param-name>
+		<param-value>UTF-8</param-value>
+	</init-param>
+</filter>
+<filter-mapping>
+	<filter-name>encodingFilter</filter-name>
+	<url-pattern>*.do</url-pattern>
+</filter-mapping>
+	<!-- shiro
+	<filter>
+		<filter-name>shiroFilter</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>shiroFilter</filter-name>
+		<url-pattern>/*</url-pattern>		
+	</filter-mapping>
+	 -->
+ <!-- web容器（前端控制器） -->
+<servlet>
+	<servlet-name>super_springMybatis</servlet-name>
+	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	<init-param>
+	<param-name>contextConfigLocation</param-name>
+	<param-value>/WEB-INF/config/super-servlet.xml</param-value>
+	</init-param>
+	<load-on-startup>1</load-on-startup>
+</servlet>
+<servlet-mapping>
+	<servlet-name>super_springMybatis</servlet-name>
+	<url-pattern>*.do</url-pattern>
+</servlet-mapping>
+<!-- 在标签库中的配置实际上就是配置对实现类的引用，JSP解释器会根据jsp文件中对标签的引用，在标签库中找到相应的标签，然后再根据标签中的定 义调用具体的实现类，本例中在jsp文件中对标签的引用：<mytag:helloWorld/>，即引用了helloWorld这个标签 -->
+<!-- tag-class：标签的实现索引，相当于类的实现；本例索引指定 jsp2.examples.simpletag.HelloWorldSimpleTag，是一个java的类文件，应放在 WEB_INF/classes/jsp2/examples/simpletag目录下的HelloWorldSimpleTag.class文件 -->
+<!-- <jsp-config>
+		<taglib>
+			<taglib-uri>http://java.sun.com/jsp/jstl/core</taglib-uri>
+			<taglib-location>/WEB-INF/tld/c.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>http://java.sun.com/jsp/jstl/fmt</taglib-uri>
+			<taglib-location>/WEB-INF/tld/fmt.tld</taglib-location>
+		</taglib>
+	</jsp-config> -->
+	<!-- 设置欢迎页 -->
+	<welcome-file-list></welcome-file-list>
+	
+</web-app>
