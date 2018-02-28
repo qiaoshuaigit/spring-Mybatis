@@ -22,7 +22,7 @@ public class LockCondition {
     // 容器最大容量
     public static int containerSize = 3;
     // 使用公平策略的可重入锁，便于观察演示结果
-    public static ReentrantLock lock = new ReentrantLock(false);
+    public static ReentrantLock lock = new ReentrantLock(true);
     public static Condition notEmpty = lock.newCondition();
     public static Condition notFull = lock.newCondition();
     // 容器
