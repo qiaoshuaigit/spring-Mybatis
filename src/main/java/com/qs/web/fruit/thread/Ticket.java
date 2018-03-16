@@ -30,10 +30,13 @@ public class Ticket extends Thread {
     }
     public synchronized void buyTick1(){
         //原子操作
-        while (ticket1.decrementAndGet()>0){
+        while (ticket1.get()>0){
+            //没问题
+            System.out.println(Thread.currentThread().getName()+" 购票成功1:"+ticket1.decrementAndGet());
+
             //打印出来得值 仍然有问题 原因可能是
             // ticket1执行完decrementAndGet之后值没有立即刷到主内存 导致下一个线程获取值不正确
-            System.out.println(Thread.currentThread().getName()+" 购票成功1:"+ticket1.get());
+            //System.out.println(Thread.currentThread().getName()+" 购票成功1:"+ticket1.get());
         }
     }
 
