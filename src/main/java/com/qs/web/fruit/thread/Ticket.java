@@ -4,10 +4,20 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author shuaion 2018/1/21
+ *
+ * ①每个线程都有一个自己的本地内存空间--线程栈空间 ，
+ * 每个线程执行时，先把变量从主内存读取到线程自己的本地内存空间，然后再对该变量进行操作。
+   ②对该变量操作完后，在某个时间再把变量刷新回主内存
+ *
+ * volatitle不保证一致性
+ * 1.volatitle保证修饰得变量 对其他线程立即可见 就是不允许将此变量同步到线程内存中
+ * 2.禁止指令重新排序
+ *
+ *
  **/
 public class Ticket extends Thread {
 
-    //private static AtomicInteger ticket = new AtomicInteger(10);
+    private static AtomicInteger ticket1 = new AtomicInteger(20);
 
     private static volatile int ticket = 10;
 
@@ -18,10 +28,18 @@ public class Ticket extends Thread {
             System.out.println(Thread.currentThread().getName()+" 购票成功:"+ticket);
         }
     }
+    public synchronized void buyTick1(){
+        //原子操作
+        while (ticket1.decrementAndGet()>0){
+            //打印出来得值 仍然有问题 原因可能是
+            // ticket1执行完decrementAndGet之后值没有立即刷到主内存 导致下一个线程获取值不正确
+            System.out.println(Thread.currentThread().getName()+" 购票成功1:"+ticket1.get());
+        }
+    }
 
     public void run() {
        // if (ticket>0){
-            buyTick();
+            buyTick1();
         //}
 
     }
